@@ -20,3 +20,9 @@ const createContext = cache(() => {
 });
 
 export const api = createCaller(createContext);
+
+export const apiGenerateStaticParams = createCaller(() =>
+  createTRPCContext({
+    headers: new Headers({ IS_IN_GENERATE_STATIC_PARAMS: "true" }),
+  }),
+);

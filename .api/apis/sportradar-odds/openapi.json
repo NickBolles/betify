@@ -1,0 +1,1997 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Odds Comparison Player Props",
+    "version": "unknown"
+  },
+  "servers": [
+    {
+      "url": "https://api.sportradar.com/oddscomparison-player-props/"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "api_key"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/{access_level}/v2/{language_code}/books.{format}": {
+      "get": {
+        "summary": "Books",
+        "description": "Returns a list of configured bookmakers and their IDs.",
+        "operationId": "oc-player-props-books",
+        "parameters": [
+          {
+            "name": "access_level",
+            "in": "path",
+            "description": "The access level of your API key",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "trial",
+                "production"
+              ],
+              "default": "trial"
+            },
+            "required": true
+          },
+          {
+            "name": "language_code",
+            "in": "path",
+            "description": "2 letter code for supported languages<br><br>`en` (English) is the only fully supported language for this API. Click **[here](https://api-docs.sportradar.us/misc/Sportradar_API_Languages.xlsx)** for a tabular list of available languages per competition.",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            },
+            "required": true
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Format returned",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "default": "json"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"books\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"generated_at\": \"2023-05-11T14:31:12.002Z\"\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "books": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "example": "string"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "string"
+                          }
+                        }
+                      }
+                    },
+                    "generated_at": {
+                      "type": "string",
+                      "example": "2023-05-11T14:31:12.002Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{access_level}/v2/{language_code}/competitions/mappings.{format}": {
+      "get": {
+        "summary": "Competition Mappings",
+        "description": "Provides competition id mapping between global and US id types.",
+        "operationId": "oc-player-props-competition-mappings",
+        "parameters": [
+          {
+            "name": "access_level",
+            "in": "path",
+            "description": "The access level of your API key",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "trial",
+                "production"
+              ],
+              "default": "trial"
+            },
+            "required": true
+          },
+          {
+            "name": "language_code",
+            "in": "path",
+            "description": "2 letter code for supported languages<br><br>`en` (English) is the only fully supported language for this API. Click **[here](https://api-docs.sportradar.us/misc/Sportradar_API_Languages.xlsx)** for a tabular list of available languages per competition.",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            },
+            "required": true
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Format returned",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "default": "json"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"generated_at\": \"2023-05-11T14:31:30.714Z\",\n  \"mappings\": [\n    {\n      \"external_id\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "generated_at": {
+                      "type": "string",
+                      "example": "2023-05-11T14:31:30.714Z"
+                    },
+                    "mappings": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "external_id": {
+                            "type": "string",
+                            "example": "string"
+                          },
+                          "id": {
+                            "type": "string",
+                            "example": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{access_level}/v2/{language_code}/competitions/{competition_id}/schedules.{format}": {
+      "get": {
+        "summary": "Competition Schedules",
+        "description": "Provides scheduling info for all events with props available in a given competition.",
+        "operationId": "oc-player-props-competition-schedules",
+        "parameters": [
+          {
+            "name": "access_level",
+            "in": "path",
+            "description": "The access level of your API key",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "trial",
+                "production"
+              ],
+              "default": "trial"
+            },
+            "required": true
+          },
+          {
+            "name": "language_code",
+            "in": "path",
+            "description": "2 letter code for supported languages<br><br>`en` (English) is the only fully supported language for this API. Click **[here](https://api-docs.sportradar.us/misc/Sportradar_API_Languages.xlsx)** for a tabular list of available languages per competition.",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            },
+            "required": true
+          },
+          {
+            "name": "competition_id",
+            "in": "path",
+            "description": "ID of a given competition",
+            "schema": {
+              "type": "string",
+              "default": "sr:competition:109"
+            },
+            "required": true
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Format returned",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "default": "json"
+            },
+            "required": true
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Number to start the list of results from. Example: start=0",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number to limit the number of results. Minimum and maximum value is 1. Example: limit=1",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"generated_at\": \"2023-05-11T14:32:08.002Z\",\n  \"schedules\": [\n    {\n      \"sport_event\": {\n        \"competitors\": [\n          {\n            \"abbreviation\": \"string\",\n            \"age_group\": \"U23\",\n            \"country\": \"string\",\n            \"country_code\": \"string\",\n            \"gender\": \"string\",\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"qualifier\": \"home\",\n            \"rotation_number\": 0,\n            \"virtual\": true\n          }\n        ],\n        \"id\": \"string\",\n        \"replaced_by\": \"string\",\n        \"resume_time\": \"2023-05-11T14:32:08.002Z\",\n        \"start_time\": \"2023-05-11T14:32:08.002Z\",\n        \"start_time_confirmed\": true\n      }\n    }\n  ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "generated_at": {
+                      "type": "string",
+                      "example": "2023-05-11T14:32:08.002Z"
+                    },
+                    "schedules": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "sport_event": {
+                            "type": "object",
+                            "properties": {
+                              "competitors": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string",
+                                      "example": "string"
+                                    },
+                                    "age_group": {
+                                      "type": "string",
+                                      "example": "U23"
+                                    },
+                                    "country": {
+                                      "type": "string",
+                                      "example": "string"
+                                    },
+                                    "country_code": {
+                                      "type": "string",
+                                      "example": "string"
+                                    },
+                                    "gender": {
+                                      "type": "string",
+                                      "example": "string"
+                                    },
+                                    "id": {
+                                      "type": "string",
+                                      "example": "string"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "string"
+                                    },
+                                    "qualifier": {
+                                      "type": "string",
+                                      "example": "home"
+                                    },
+                                    "rotation_number": {
+                                      "type": "integer",
+                                      "example": 0,
+                                      "default": 0
+                                    },
+                                    "virtual": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    }
+                                  }
+                                }
+                              },
+                              "id": {
+                                "type": "string",
+                                "example": "string"
+                              },
+                              "replaced_by": {
+                                "type": "string",
+                                "example": "string"
+                              },
+                              "resume_time": {
+                                "type": "string",
+                                "example": "2023-05-11T14:32:08.002Z"
+                              },
+                              "start_time": {
+                                "type": "string",
+                                "example": "2023-05-11T14:32:08.002Z"
+                              },
+                              "start_time_confirmed": {
+                                "type": "boolean",
+                                "example": true,
+                                "default": true
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{access_level}/v2/{language_code}/competitors/mappings.{format}": {
+      "get": {
+        "summary": "Competitor Mappings",
+        "description": "Provides competition id mapping between global and US id types.",
+        "operationId": "oc-player-props-competitor-mappings",
+        "parameters": [
+          {
+            "name": "access_level",
+            "in": "path",
+            "description": "The access level of your API key",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "trial",
+                "production"
+              ],
+              "default": "trial"
+            },
+            "required": true
+          },
+          {
+            "name": "language_code",
+            "in": "path",
+            "description": "2 letter code for supported languages<br><br>`en` (English) is the only fully supported language for this API. Click **[here](https://api-docs.sportradar.us/misc/Sportradar_API_Languages.xlsx)** for a tabular list of available languages per competition.",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            },
+            "required": true
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Format returned",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "default": "json"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"generated_at\": \"2023-05-11T14:32:32.669Z\",\n  \"mappings\": [\n    {\n      \"external_id\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "generated_at": {
+                      "type": "string",
+                      "example": "2023-05-11T14:32:32.669Z"
+                    },
+                    "mappings": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "external_id": {
+                            "type": "string",
+                            "example": "string"
+                          },
+                          "id": {
+                            "type": "string",
+                            "example": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{access_level}/v2/{language_code}/sports/{sport_id}/schedules/{date}/schedules.{format}": {
+      "get": {
+        "summary": "Daily Schedules",
+        "description": "Provides scheduling info for all events with props available for a given sport and date.",
+        "operationId": "oc-player-props-daily-schedules",
+        "parameters": [
+          {
+            "name": "access_level",
+            "in": "path",
+            "description": "The access level of your API key",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "trial",
+                "production"
+              ],
+              "default": "trial"
+            },
+            "required": true
+          },
+          {
+            "name": "language_code",
+            "in": "path",
+            "description": "2 letter code for supported languages<br><br>`en` (English) is the only fully supported language for this API. Click **[here](https://api-docs.sportradar.us/misc/Sportradar_API_Languages.xlsx)** for a tabular list of available languages per competition.",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            },
+            "required": true
+          },
+          {
+            "name": "sport_id",
+            "in": "path",
+            "description": "ID of a given competition",
+            "schema": {
+              "type": "string",
+              "default": "sr:sport:2"
+            },
+            "required": true
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "Date in YYYY-MM-DD",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": true
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Format returned",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "default": "json"
+            },
+            "required": true
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Number to start the list of results from. Example: start=1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number to limit the number of results. Minimum and maximum value is 1. Example: limit=1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "live",
+            "in": "query",
+            "description": "Boolean value to return live/non-live markets<br><br>Example: <code>live=true</code> or <code>live=false</code>",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"generated_at\": \"2023-05-11T14:33:35.340Z\",\n  \"schedules\": [\n    {\n      \"sport_event\": {\n        \"competitors\": [\n          {\n            \"abbreviation\": \"string\",\n            \"age_group\": \"U23\",\n            \"country\": \"string\",\n            \"country_code\": \"string\",\n            \"gender\": \"string\",\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"qualifier\": \"home\",\n            \"rotation_number\": 0,\n            \"virtual\": true\n          }\n        ],\n        \"id\": \"string\",\n        \"replaced_by\": \"string\",\n        \"resume_time\": \"2023-05-11T14:33:35.340Z\",\n        \"start_time\": \"2023-05-11T14:33:35.340Z\",\n        \"start_time_confirmed\": true\n      }\n    }\n  ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "generated_at": {
+                      "type": "string",
+                      "example": "2023-05-11T14:33:35.340Z"
+                    },
+                    "schedules": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "sport_event": {
+                            "type": "object",
+                            "properties": {
+                              "competitors": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string",
+                                      "example": "string"
+                                    },
+                                    "age_group": {
+                                      "type": "string",
+                                      "example": "U23"
+                                    },
+                                    "country": {
+                                      "type": "string",
+                                      "example": "string"
+                                    },
+                                    "country_code": {
+                                      "type": "string",
+                                      "example": "string"
+                                    },
+                                    "gender": {
+                                      "type": "string",
+                                      "example": "string"
+                                    },
+                                    "id": {
+                                      "type": "string",
+                                      "example": "string"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "string"
+                                    },
+                                    "qualifier": {
+                                      "type": "string",
+                                      "example": "home"
+                                    },
+                                    "rotation_number": {
+                                      "type": "integer",
+                                      "example": 0,
+                                      "default": 0
+                                    },
+                                    "virtual": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    }
+                                  }
+                                }
+                              },
+                              "id": {
+                                "type": "string",
+                                "example": "string"
+                              },
+                              "replaced_by": {
+                                "type": "string",
+                                "example": "string"
+                              },
+                              "resume_time": {
+                                "type": "string",
+                                "example": "2023-05-11T14:33:35.340Z"
+                              },
+                              "start_time": {
+                                "type": "string",
+                                "example": "2023-05-11T14:33:35.340Z"
+                              },
+                              "start_time_confirmed": {
+                                "type": "boolean",
+                                "example": true,
+                                "default": true
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{access_level}/v2/{language_code}/players/mappings.{format}": {
+      "get": {
+        "summary": "Player Mappings",
+        "description": "Provides player id mapping between global and US id types.",
+        "operationId": "oc-player-props-player-mappings",
+        "parameters": [
+          {
+            "name": "access_level",
+            "in": "path",
+            "description": "The access level of your API key",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "trial",
+                "production"
+              ],
+              "default": "trial"
+            },
+            "required": true
+          },
+          {
+            "name": "language_code",
+            "in": "path",
+            "description": "2 letter code for supported languages<br><br>`en` (English) is the only fully supported language for this API. Click **[here](https://api-docs.sportradar.us/misc/Sportradar_API_Languages.xlsx)** for a tabular list of available languages per competition.",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            },
+            "required": true
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Format returned",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "default": "json"
+            },
+            "required": true
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Number to start the list of results from. Example: start=0",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number to limit the number of results. Minimum value is 1, maximum value is 1000. Example: limit=1000",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"generated_at\": \"2023-05-11T14:34:52.323Z\",\n  \"mappings\": [\n    {\n      \"external_id\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "generated_at": {
+                      "type": "string",
+                      "example": "2023-05-11T14:34:52.323Z"
+                    },
+                    "mappings": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "external_id": {
+                            "type": "string",
+                            "example": "string"
+                          },
+                          "id": {
+                            "type": "string",
+                            "example": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{access_level}/v2/{language_code}/players_props_changelog.{format}": {
+      "get": {
+        "summary": "Player Props Change Log",
+        "description": "Returns a list of the latest odds changes.",
+        "operationId": "oc-player-props-change-log-endpoint",
+        "parameters": [
+          {
+            "name": "access_level",
+            "in": "path",
+            "description": "The access level of your API key",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "trial",
+                "production"
+              ],
+              "default": "trial"
+            },
+            "required": true
+          },
+          {
+            "name": "language_code",
+            "in": "path",
+            "description": "2 letter code for supported languages<br><br>`en` (English) is the only fully supported language for this API. Click **[here](https://api-docs.sportradar.us/misc/Sportradar_API_Languages.xlsx)** for a tabular list of available languages per competition.",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            },
+            "required": true
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Format returned",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "default": "json"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"changes\": [\n    {\n      \"id\": \"string\",\n      \"player_props_odds_change\": 0,\n      \"type\": \"string\"\n    }\n  ],\n  \"generated_at\": \"2023-05-11T14:35:14.268Z\",\n  \"status\": {\n    \"from\": 0,\n    \"to\": 0\n  }\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "changes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "example": "string"
+                          },
+                          "player_props_odds_change": {
+                            "type": "integer",
+                            "example": 0,
+                            "default": 0
+                          },
+                          "type": {
+                            "type": "string",
+                            "example": "string"
+                          }
+                        }
+                      }
+                    },
+                    "generated_at": {
+                      "type": "string",
+                      "example": "2023-05-11T14:35:14.268Z"
+                    },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "from": {
+                          "type": "integer",
+                          "example": 0,
+                          "default": 0
+                        },
+                        "to": {
+                          "type": "integer",
+                          "example": 0,
+                          "default": 0
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{access_level}/v2/{language_code}/sports/{sport_id}/categories.{format}": {
+      "get": {
+        "summary": "Sport Categories",
+        "description": "Returns a list of categories for a sport ID that have odds available.",
+        "operationId": "oc-player-props-sport-categories",
+        "parameters": [
+          {
+            "name": "access_level",
+            "in": "path",
+            "description": "The access level of your API key",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "trial",
+                "production"
+              ],
+              "default": "trial"
+            },
+            "required": true
+          },
+          {
+            "name": "language_code",
+            "in": "path",
+            "description": "2 letter code for supported languages<br><br>`en` (English) is the only fully supported language for this API. Click **[here](https://api-docs.sportradar.us/misc/Sportradar_API_Languages.xlsx)** for a tabular list of available languages per competition.",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            },
+            "required": true
+          },
+          {
+            "name": "sport_id",
+            "in": "path",
+            "description": "ID of a given sport",
+            "schema": {
+              "type": "string",
+              "default": "sr:sport:2"
+            },
+            "required": true
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Format returned",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "default": "json"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"categories\": [\n    {\n      \"country_code\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"generated_at\": \"2023-05-11T14:36:10.024Z\"\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "categories": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "country_code": {
+                            "type": "string",
+                            "example": "string"
+                          },
+                          "id": {
+                            "type": "string",
+                            "example": "string"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "string"
+                          }
+                        }
+                      }
+                    },
+                    "generated_at": {
+                      "type": "string",
+                      "example": "2023-05-11T14:36:10.024Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{access_level}/v2/{language_code}/sports/{sport_id}/competitions.{format}": {
+      "get": {
+        "summary": "Sport Competitions",
+        "description": "Returns a list of competitions for a sport ID that have odds available.",
+        "operationId": "oc-player-props-sport-competitions",
+        "parameters": [
+          {
+            "name": "access_level",
+            "in": "path",
+            "description": "The access level of your API key",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "trial",
+                "production"
+              ],
+              "default": "trial"
+            },
+            "required": true
+          },
+          {
+            "name": "language_code",
+            "in": "path",
+            "description": "2 letter code for supported languages<br><br>`en` (English) is the only fully supported language for this API. Click **[here](https://api-docs.sportradar.us/misc/Sportradar_API_Languages.xlsx)** for a tabular list of available languages per competition.",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            },
+            "required": true
+          },
+          {
+            "name": "sport_id",
+            "in": "path",
+            "description": "ID of a given sport",
+            "schema": {
+              "type": "string",
+              "default": "sr:sport:2"
+            },
+            "required": true
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Format returned",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "default": "json"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"competitions\": [\n    {\n      \"category\": {\n        \"country_code\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"futures\": true,\n      \"gender\": \"string\",\n      \"id\": \"string\",\n      \"markets\": true,\n      \"name\": \"string\",\n      \"player_props\": true\n    }\n  ],\n  \"generated_at\": \"2023-05-11T14:36:10.027Z\"\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "competitions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "object",
+                            "properties": {
+                              "country_code": {
+                                "type": "string",
+                                "example": "string"
+                              },
+                              "id": {
+                                "type": "string",
+                                "example": "string"
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "string"
+                              }
+                            }
+                          },
+                          "futures": {
+                            "type": "boolean",
+                            "example": true,
+                            "default": true
+                          },
+                          "gender": {
+                            "type": "string",
+                            "example": "string"
+                          },
+                          "id": {
+                            "type": "string",
+                            "example": "string"
+                          },
+                          "markets": {
+                            "type": "boolean",
+                            "example": true,
+                            "default": true
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "string"
+                          },
+                          "player_props": {
+                            "type": "boolean",
+                            "example": true,
+                            "default": true
+                          }
+                        }
+                      }
+                    },
+                    "generated_at": {
+                      "type": "string",
+                      "example": "2023-05-11T14:36:10.027Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{access_level}/v2/{language_code}/sport_events/mappings.{format}": {
+      "get": {
+        "summary": "Sport Event Mappings",
+        "description": "Provides sport event id mapping between global and US id types.",
+        "operationId": "oc-player-props-sport-event-mappings",
+        "parameters": [
+          {
+            "name": "access_level",
+            "in": "path",
+            "description": "The access level of your API key",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "trial",
+                "production"
+              ],
+              "default": "trial"
+            },
+            "required": true
+          },
+          {
+            "name": "language_code",
+            "in": "path",
+            "description": "2 letter code for supported languages<br><br>`en` (English) is the only fully supported language for this API. Click **[here](https://api-docs.sportradar.us/misc/Sportradar_API_Languages.xlsx)** for a tabular list of available languages per competition.",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            },
+            "required": true
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Format returned",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "default": "json"
+            },
+            "required": true
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Number to start the list of results from. Example: start=0",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number to limit the number of results. Minimum value is 1, maximum value is 1000. Example: limit=1000",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"generated_at\": \"2023-05-11T14:36:49.751Z\",\n  \"mappings\": [\n    {\n      \"external_id\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "generated_at": {
+                      "type": "string",
+                      "example": "2023-05-11T14:36:49.751Z"
+                    },
+                    "mappings": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "external_id": {
+                            "type": "string",
+                            "example": "string"
+                          },
+                          "id": {
+                            "type": "string",
+                            "example": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{access_level}/v2/{language_code}/sport_events/{sport_event_id}/players_props.{format}": {
+      "get": {
+        "summary": "Sport Event Player Props",
+        "description": "Returns a list of player props for a given sport event ID.",
+        "operationId": "oc-player-props-sport-event-player-props",
+        "parameters": [
+          {
+            "name": "access_level",
+            "in": "path",
+            "description": "The access level of your API key",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "trial",
+                "production"
+              ],
+              "default": "trial"
+            },
+            "required": true
+          },
+          {
+            "name": "language_code",
+            "in": "path",
+            "description": "2 letter code for supported languages<br><br>`en` (English) is the only fully supported language for this API. Click **[here](https://api-docs.sportradar.us/misc/Sportradar_API_Languages.xlsx)** for a tabular list of available languages per competition.",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            },
+            "required": true
+          },
+          {
+            "name": "sport_event_id",
+            "in": "path",
+            "description": "ID of a given sport event",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Format returned",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "default": "json"
+            },
+            "required": true
+          },
+          {
+            "name": "live",
+            "in": "query",
+            "description": "Boolean value to return live/non-live markets<br><br>Example: <code>live=true</code> or <code>live=false</code>",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"generated_at\": \"2023-05-11T14:37:15.809Z\",\n  \"sport_event_players_props\": {\n    \"players_markets\": {\n      \"markets\": [\n        {\n          \"books\": [\n            {\n              \"external_market_id\": \"string\",\n              \"external_sport_event_id\": \"string\",\n              \"id\": \"string\",\n              \"name\": \"string\",\n              \"outcomes\": [\n                {\n                  \"external_outcome_id\": \"string\",\n                  \"field_id\": \"string\",\n                  \"handicap\": \"string\",\n                  \"id\": \"string\",\n                  \"odds_american\": \"string\",\n                  \"odds_decimal\": \"string\",\n                  \"odds_fraction\": \"string\",\n                  \"open_handicap\": \"string\",\n                  \"open_odds_american\": \"string\",\n                  \"open_odds_decimal\": \"string\",\n                  \"open_odds_fraction\": \"string\",\n                  \"open_total\": \"string\",\n                  \"player_id\": \"string\",\n                  \"player_name\": \"string\",\n                  \"removed\": true,\n                  \"total\": \"string\",\n                  \"trend\": \"up\",\n                  \"type\": \"string\"\n                }\n              ],\n              \"removed\": true\n            }\n          ],\n          \"id\": \"string\",\n          \"is_live\": true,\n          \"name\": \"string\"\n        }\n      ]\n    },\n    \"players_props\": [\n      {\n        \"markets\": [\n          {\n            \"books\": [\n              {\n                \"external_market_id\": \"string\",\n                \"external_sport_event_id\": \"string\",\n                \"id\": \"string\",\n                \"name\": \"string\",\n                \"outcomes\": [\n                  {\n                    \"external_outcome_id\": \"string\",\n                    \"field_id\": \"string\",\n                    \"handicap\": \"string\",\n                    \"id\": \"string\",\n                    \"odds_american\": \"string\",\n                    \"odds_decimal\": \"string\",\n                    \"odds_fraction\": \"string\",\n                    \"open_handicap\": \"string\",\n                    \"open_odds_american\": \"string\",\n                    \"open_odds_decimal\": \"string\",\n                    \"open_odds_fraction\": \"string\",\n                    \"open_total\": \"string\",\n                    \"player_id\": \"string\",\n                    \"player_name\": \"string\",\n                    \"removed\": true,\n                    \"total\": \"string\",\n                    \"trend\": \"up\",\n                    \"type\": \"string\"\n                  }\n                ],\n                \"removed\": true\n              }\n            ],\n            \"id\": \"string\",\n            \"is_live\": true,\n            \"name\": \"string\"\n          }\n        ],\n        \"player\": {\n          \"competitor_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      }\n    ],\n    \"sport_event\": {\n      \"competitors\": [\n        {\n          \"abbreviation\": \"string\",\n          \"age_group\": \"U23\",\n          \"country\": \"string\",\n          \"country_code\": \"string\",\n          \"gender\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"qualifier\": \"home\",\n          \"rotation_number\": 0,\n          \"virtual\": true\n        }\n      ],\n      \"id\": \"string\",\n      \"replaced_by\": \"string\",\n      \"resume_time\": \"2023-05-11T14:37:15.809Z\",\n      \"start_time\": \"2023-05-11T14:37:15.809Z\",\n      \"start_time_confirmed\": true\n    }\n  }\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "generated_at": {
+                      "type": "string",
+                      "example": "2023-05-11T14:37:15.809Z"
+                    },
+                    "sport_event_players_props": {
+                      "type": "object",
+                      "properties": {
+                        "players_markets": {
+                          "type": "object",
+                          "properties": {
+                            "markets": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "books": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "external_market_id": {
+                                          "type": "string",
+                                          "example": "string"
+                                        },
+                                        "external_sport_event_id": {
+                                          "type": "string",
+                                          "example": "string"
+                                        },
+                                        "id": {
+                                          "type": "string",
+                                          "example": "string"
+                                        },
+                                        "name": {
+                                          "type": "string",
+                                          "example": "string"
+                                        },
+                                        "outcomes": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "external_outcome_id": {
+                                                "type": "string",
+                                                "example": "string"
+                                              },
+                                              "field_id": {
+                                                "type": "string",
+                                                "example": "string"
+                                              },
+                                              "handicap": {
+                                                "type": "string",
+                                                "example": "string"
+                                              },
+                                              "id": {
+                                                "type": "string",
+                                                "example": "string"
+                                              },
+                                              "odds_american": {
+                                                "type": "string",
+                                                "example": "string"
+                                              },
+                                              "odds_decimal": {
+                                                "type": "string",
+                                                "example": "string"
+                                              },
+                                              "odds_fraction": {
+                                                "type": "string",
+                                                "example": "string"
+                                              },
+                                              "open_handicap": {
+                                                "type": "string",
+                                                "example": "string"
+                                              },
+                                              "open_odds_american": {
+                                                "type": "string",
+                                                "example": "string"
+                                              },
+                                              "open_odds_decimal": {
+                                                "type": "string",
+                                                "example": "string"
+                                              },
+                                              "open_odds_fraction": {
+                                                "type": "string",
+                                                "example": "string"
+                                              },
+                                              "open_total": {
+                                                "type": "string",
+                                                "example": "string"
+                                              },
+                                              "player_id": {
+                                                "type": "string",
+                                                "example": "string"
+                                              },
+                                              "player_name": {
+                                                "type": "string",
+                                                "example": "string"
+                                              },
+                                              "removed": {
+                                                "type": "boolean",
+                                                "example": true,
+                                                "default": true
+                                              },
+                                              "total": {
+                                                "type": "string",
+                                                "example": "string"
+                                              },
+                                              "trend": {
+                                                "type": "string",
+                                                "example": "up"
+                                              },
+                                              "type": {
+                                                "type": "string",
+                                                "example": "string"
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "removed": {
+                                          "type": "boolean",
+                                          "example": true,
+                                          "default": true
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "id": {
+                                    "type": "string",
+                                    "example": "string"
+                                  },
+                                  "is_live": {
+                                    "type": "boolean",
+                                    "example": true,
+                                    "default": true
+                                  },
+                                  "name": {
+                                    "type": "string",
+                                    "example": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "players_props": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "markets": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "books": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "external_market_id": {
+                                            "type": "string",
+                                            "example": "string"
+                                          },
+                                          "external_sport_event_id": {
+                                            "type": "string",
+                                            "example": "string"
+                                          },
+                                          "id": {
+                                            "type": "string",
+                                            "example": "string"
+                                          },
+                                          "name": {
+                                            "type": "string",
+                                            "example": "string"
+                                          },
+                                          "outcomes": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "external_outcome_id": {
+                                                  "type": "string",
+                                                  "example": "string"
+                                                },
+                                                "field_id": {
+                                                  "type": "string",
+                                                  "example": "string"
+                                                },
+                                                "handicap": {
+                                                  "type": "string",
+                                                  "example": "string"
+                                                },
+                                                "id": {
+                                                  "type": "string",
+                                                  "example": "string"
+                                                },
+                                                "odds_american": {
+                                                  "type": "string",
+                                                  "example": "string"
+                                                },
+                                                "odds_decimal": {
+                                                  "type": "string",
+                                                  "example": "string"
+                                                },
+                                                "odds_fraction": {
+                                                  "type": "string",
+                                                  "example": "string"
+                                                },
+                                                "open_handicap": {
+                                                  "type": "string",
+                                                  "example": "string"
+                                                },
+                                                "open_odds_american": {
+                                                  "type": "string",
+                                                  "example": "string"
+                                                },
+                                                "open_odds_decimal": {
+                                                  "type": "string",
+                                                  "example": "string"
+                                                },
+                                                "open_odds_fraction": {
+                                                  "type": "string",
+                                                  "example": "string"
+                                                },
+                                                "open_total": {
+                                                  "type": "string",
+                                                  "example": "string"
+                                                },
+                                                "player_id": {
+                                                  "type": "string",
+                                                  "example": "string"
+                                                },
+                                                "player_name": {
+                                                  "type": "string",
+                                                  "example": "string"
+                                                },
+                                                "removed": {
+                                                  "type": "boolean",
+                                                  "example": true,
+                                                  "default": true
+                                                },
+                                                "total": {
+                                                  "type": "string",
+                                                  "example": "string"
+                                                },
+                                                "trend": {
+                                                  "type": "string",
+                                                  "example": "up"
+                                                },
+                                                "type": {
+                                                  "type": "string",
+                                                  "example": "string"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "removed": {
+                                            "type": "boolean",
+                                            "example": true,
+                                            "default": true
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "id": {
+                                      "type": "string",
+                                      "example": "string"
+                                    },
+                                    "is_live": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "player": {
+                                "type": "object",
+                                "properties": {
+                                  "competitor_id": {
+                                    "type": "string",
+                                    "example": "string"
+                                  },
+                                  "id": {
+                                    "type": "string",
+                                    "example": "string"
+                                  },
+                                  "name": {
+                                    "type": "string",
+                                    "example": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "sport_event": {
+                          "type": "object",
+                          "properties": {
+                            "competitors": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "abbreviation": {
+                                    "type": "string",
+                                    "example": "string"
+                                  },
+                                  "age_group": {
+                                    "type": "string",
+                                    "example": "U23"
+                                  },
+                                  "country": {
+                                    "type": "string",
+                                    "example": "string"
+                                  },
+                                  "country_code": {
+                                    "type": "string",
+                                    "example": "string"
+                                  },
+                                  "gender": {
+                                    "type": "string",
+                                    "example": "string"
+                                  },
+                                  "id": {
+                                    "type": "string",
+                                    "example": "string"
+                                  },
+                                  "name": {
+                                    "type": "string",
+                                    "example": "string"
+                                  },
+                                  "qualifier": {
+                                    "type": "string",
+                                    "example": "home"
+                                  },
+                                  "rotation_number": {
+                                    "type": "integer",
+                                    "example": 0,
+                                    "default": 0
+                                  },
+                                  "virtual": {
+                                    "type": "boolean",
+                                    "example": true,
+                                    "default": true
+                                  }
+                                }
+                              }
+                            },
+                            "id": {
+                              "type": "string",
+                              "example": "string"
+                            },
+                            "replaced_by": {
+                              "type": "string",
+                              "example": "string"
+                            },
+                            "resume_time": {
+                              "type": "string",
+                              "example": "2023-05-11T14:37:15.809Z"
+                            },
+                            "start_time": {
+                              "type": "string",
+                              "example": "2023-05-11T14:37:15.809Z"
+                            },
+                            "start_time_confirmed": {
+                              "type": "boolean",
+                              "example": true,
+                              "default": true
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{access_level}/v2/{language_code}/sports/{sport_id}/stages.{format}": {
+      "get": {
+        "summary": "Sport Stages",
+        "description": "Returns a list of stages and categories for a sport ID that have odds available.",
+        "operationId": "oc-player-props-sport-stages",
+        "parameters": [
+          {
+            "name": "access_level",
+            "in": "path",
+            "description": "The access level of your API key",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "trial",
+                "production"
+              ],
+              "default": "trial"
+            },
+            "required": true
+          },
+          {
+            "name": "language_code",
+            "in": "path",
+            "description": "2 letter code for supported languages<br><br>`en` (English) is the only fully supported language for this API. Click **[here](https://api-docs.sportradar.us/misc/Sportradar_API_Languages.xlsx)** for a tabular list of available languages per competition.",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            },
+            "required": true
+          },
+          {
+            "name": "sport_id",
+            "in": "path",
+            "description": "ID of a given sport",
+            "schema": {
+              "type": "string",
+              "default": "sr:sport:2"
+            },
+            "required": true
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Format returned",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "default": "json"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"generated_at\": \"2023-05-11T14:37:37.446Z\",\n  \"stages\": [\n    {\n      \"category\": {\n        \"country_code\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"description\": \"string\",\n      \"id\": \"string\",\n      \"scheduled\": \"2023-05-11T14:37:37.446Z\",\n      \"scheduled_end\": \"2023-05-11T14:37:37.446Z\"\n    }\n  ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "generated_at": {
+                      "type": "string",
+                      "example": "2023-05-11T14:37:37.446Z"
+                    },
+                    "stages": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "object",
+                            "properties": {
+                              "country_code": {
+                                "type": "string",
+                                "example": "string"
+                              },
+                              "id": {
+                                "type": "string",
+                                "example": "string"
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "string"
+                              }
+                            }
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "string"
+                          },
+                          "id": {
+                            "type": "string",
+                            "example": "string"
+                          },
+                          "scheduled": {
+                            "type": "string",
+                            "example": "2023-05-11T14:37:37.446Z"
+                          },
+                          "scheduled_end": {
+                            "type": "string",
+                            "example": "2023-05-11T14:37:37.446Z"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{access_level}/v2/{language_code}/sports.{format}": {
+      "get": {
+        "summary": "Sports",
+        "description": "Returns a list of sports and sport IDs.",
+        "operationId": "oc-player-props-sports",
+        "parameters": [
+          {
+            "name": "access_level",
+            "in": "path",
+            "description": "The access level of your API key",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "trial",
+                "production"
+              ],
+              "default": "trial"
+            },
+            "required": true
+          },
+          {
+            "name": "language_code",
+            "in": "path",
+            "description": "2 letter code for supported languages<br><br>`en` (English) is the only fully supported language for this API. Click **[here](https://api-docs.sportradar.us/misc/Sportradar_API_Languages.xlsx)** for a tabular list of available languages per competition.",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            },
+            "required": true
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Format returned",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "default": "json"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"generated_at\": \"2023-05-11T14:37:53.374Z\",\n  \"sports\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"stage\"\n    }\n  ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "generated_at": {
+                      "type": "string",
+                      "example": "2023-05-11T14:37:53.374Z"
+                    },
+                    "sports": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "example": "string"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "string"
+                          },
+                          "type": {
+                            "type": "string",
+                            "example": "stage"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{access_level}/v2/{language_code}/stages/mappings.{format}": {
+      "get": {
+        "summary": "Stage Mappings",
+        "description": "Provides stage id mapping between global and US id types.",
+        "operationId": "oc-player-props-stage-mappings",
+        "parameters": [
+          {
+            "name": "access_level",
+            "in": "path",
+            "description": "The access level of your API key",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "trial",
+                "production"
+              ],
+              "default": "trial"
+            },
+            "required": true
+          },
+          {
+            "name": "language_code",
+            "in": "path",
+            "description": "2 letter code for supported languages<br><br>`en` (English) is the only fully supported language for this API. Click **[here](https://api-docs.sportradar.us/misc/Sportradar_API_Languages.xlsx)** for a tabular list of available languages per competition.",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            },
+            "required": true
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Format returned",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "default": "json"
+            },
+            "required": true
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Number to start the list of results from. Example: start=0",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number to limit the number of results. Minimum value is 1, maximum value is 1000. Example: limit=1000",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"generated_at\": \"2023-05-11T14:38:09.058Z\",\n  \"mappings\": [\n    {\n      \"external_id\": \"string\",\n      \"id\": \"string\"\n    }\n  ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "generated_at": {
+                      "type": "string",
+                      "example": "2023-05-11T14:38:09.058Z"
+                    },
+                    "mappings": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "external_id": {
+                            "type": "string",
+                            "example": "string"
+                          },
+                          "id": {
+                            "type": "string",
+                            "example": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "x-readme": {
+    "headers": []
+  },
+  "x-readme-fauxas": true
+}

@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "apis": [
+    {
+      "identifier": "sportradar-odds",
+      "source": "@sportradar-odds/v2#2kzjaw316lr57mj60",
+      "integrity": "sha512-1MgfbnEINCTO/O8huLwqpMh6g5IzkSmll/qeKG1c4tueVWT4pI6mLUh3fLoQI2/PwSz6rj1U3Jr7rHb7I/TXjg==",
+      "installerVersion": "6.1.1"
+    }
+  ]
+}

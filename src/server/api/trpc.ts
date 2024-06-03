@@ -8,6 +8,7 @@
  */
 
 import { initTRPC, TRPCError } from "@trpc/server";
+import type { Session } from "next-auth";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
@@ -27,7 +28,13 @@ import { db } from "~/server/db";
  * @see https://trpc.io/docs/server/context
  */
 export const createTRPCContext = async (opts: { headers: Headers }) => {
-  const session = await getServerAuthSession();
+  let session: Session | null = null;
+
+  if (opts.headers.get("IS_IN_GENERATE_STATIC_PARAMS")) {
+    session = { user: { id: "1" }, expires: new Date().toISOString() };
+  } else {
+    session = await getServerAuthSession();
+  }
 
   return {
     db,
@@ -50,6 +57,7 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
       ...shape,
       data: {
         ...shape.data,
+        cause: error.cause?.message,
         zodError:
           error.cause instanceof ZodError ? error.cause.flatten() : null,
       },
@@ -96,7 +104,7 @@ export const publicProcedure = t.procedure;
  * @see https://trpc.io/docs/procedures
  */
 export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
-  if (!ctx.session || !ctx.session.user) {
+  if (!ctx.session?.user) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
   return next({
